@@ -1,0 +1,164 @@
+/* Modal Windows
+---------------------------------*/
+.xpk-window {
+    left: 0;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    z-index: 100;
+    font-size: 13px;
+}
+
+.xpk-mwindow-wrap {
+    margin: 10px auto;
+    background: #333;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.9);
+    -moz-box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.9);
+    -webkit-box-shadow: rgba(0, 0, 0, 0.9) 0px 2px 12px;
+    border-top: 1px solid #515151;
+    opacity: 1;
+    @include scale(1);
+    @include transition(all 300ms cubic-bezier(0.77, 0, 0.175, 1));
+}
+
+.xpk-mwindow-content {
+    padding: 0;
+}
+
+.xpk-win-wrapper {
+    margin: auto;
+    position: relative;
+}
+
+.xpk-win-show {
+    overflow: hidden !important;
+}
+
+.xpk-win-show {
+    @include transition(none);
+    opacity: 0;
+    @include scale(0);
+}
+
+.xpk-win-head {
+    display: block;
+    padding: 0;
+    margin: 0 0 -10px 0;
+    width: 100%;
+    zoom: 1;
+    position: relative;
+
+}
+
+.xpk-win-head h3 {
+    font-size: 24px;
+    margin: 0;
+    padding: 16px 25px 0;
+    color: #FFF;
+    zoom: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 31px;
+    font-weight: normal;
+}
+
+.xpk-win-head .xpk-close-button {
+    display: block;
+    border: 0 none;
+    background: transparent;
+    font: 26px/32px Arial;
+    width: 32px;
+    height: 32px;    
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-decoration: none;
+    text-align: center;
+    color: $silver;
+    @include text-shadow(0 2px #222);
+}
+
+.xpk-win-head .xpk-close-button:hover {
+    background-position: 0px 0px;
+    color: $white;
+}
+
+.xpk-win-content {
+    padding: 25px;
+}
+
+.xpk-win-content p {
+    margin-bottom: 0.5em;
+}
+
+.xpk-win-loading {
+    height: 50px;
+    background: url(../images/ajax_loader_16px.gif) no-repeat center;
+}
+
+.xpk-window-preloader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #FFF url(../images/ajax_loader_16px_fff.gif) no-repeat center center;
+}
+
+.build-meta {
+    font-size: 0.8;
+    color: #FFFFFF;
+}
+
+#dimScreen,
+#_exposeOverlay {
+    background: #000;
+    z-index: 99;
+}
+
+.mwin-form {
+    input[type=text],
+    input[type=search],
+    input[type=password],
+    input[type=email],
+    textarea,
+    select {
+        width: 100%;
+    }
+
+    .layout-inline {
+        white-space: nowrap;
+
+        .f-label,
+        .f-inputs {
+            display: inline-block;
+            margin: 0 10px 0 0;
+            vertical-align: middle;
+        }
+        .f-inputs {
+            margin: 0;
+        }
+        .check-label {
+            display: inline-block;
+            margin: 0 15px 0 0;
+        }
+        .check-label:last-child {
+            margin: 0
+        }
+    }
+}
+
+#customHUDPresets {
+    position: relative;
+}
+
+.download-presets-button {
+    margin: 10px 0 -50px 0;
+    position: absolute;
+    right: 0;
+}
+
+.import-form-buttons .file-input .file-name {
+    display: none;
+}

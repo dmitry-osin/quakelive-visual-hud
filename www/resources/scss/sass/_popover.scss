@@ -1,0 +1,112 @@
+.popover-wrap {
+    position: absolute;
+    z-index: 999;
+    @include box-shadow(rgba(0, 0, 0, 0.9) 0px 1px 15px);
+}
+
+.popover-body {
+    background-color: #555;
+    border-top: 1px solid #6e6e6e;
+    padding: 0px;
+    @include box-shadow(rgba(0,0,0,0.5) 0 1px 6px);
+}
+
+.popover-title {
+    font-size: 1.5em;
+    padding: 12px 15px 0;
+    line-height: 1;
+    margin-bottom: -5px;
+}
+
+.popover-content {
+    padding: 14px;
+}
+
+.popover-corner {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid;
+    z-index: 1000;
+}
+
+.popover-corner[class*='top-'] {
+    border-color: #555 transparent transparent transparent;
+}
+
+.popover-corner[class*='bottom-']{
+    border-color: transparent transparent #6e6e6e transparent;
+}
+
+.popover-corner[class*='left-'] {
+    border-color: transparent transparent transparent #555;
+}
+
+.popover-corner[class*='right-'] {
+    border-color: transparent #555 transparent transparent;
+}
+
+.fade {
+    visibility: visible;
+    opacity: 0;
+    -webkit-transition: opacity 0.15s linear;
+    -moz-transition: opacity 0.15s linear;
+    -ms-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+}
+
+.fade.in {
+    opacity: 1;
+}
+
+.popover-menu {
+    margin: 0;
+
+    li{
+        @include box-shadow(none);
+        float: none;
+        border: 0 none;
+        padding: 3px 0;
+        list-style: none;
+        margin: 0;
+
+        @include border-radius(3px);
+        @inclide min-height(22px);
+
+
+        &:hover {
+            background-color: #292929;
+
+            .icon {
+                opacity: 1;
+            }
+
+            .item-name {
+                color: $white;
+            }
+        }
+
+        .item-name {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+            padding-right: 8px;
+            color: $silver;
+            text-decoration: none;
+        }
+
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            background-position: center center;
+            background-repeat: no-repeat;
+            margin-left: 5px;
+            width: 22px;
+            height: 22px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            opacity: 0.8;
+        }
+    }
+}

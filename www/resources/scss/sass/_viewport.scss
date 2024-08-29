@@ -1,0 +1,190 @@
+body,
+.vh-viewport {
+    @include transition(none);
+    overflow: hidden;
+    position: relative;
+}
+
+.vh-viewport-topbar {
+    @include transition(all 300ms cubic-bezier(0.77, 0, 0.175, 1));
+    @include viewport-region;
+    left: $basePostionOffset;
+    top: $basePostionOffset;
+    right: $basePostionOffset;
+    line-height: $topbarHeight - 2px;
+    height: $topbarHeight - 2px;
+    z-index: 2;
+
+}
+
+.vh-viewport-sidebar {
+    @include transition(none);
+    position: absolute;
+    top: $sidebarTop;
+    right: 0;
+    padding-right: $basePostionOffset;
+    bottom: $basePostionOffset;
+    width: $sidebarWidth;
+    z-index: 2;
+}
+
+.vh-viewport-sidebar-content {
+    @include viewport-region;
+    @include box-sizing(border-box);
+    overflow: auto;
+    border-width: 1px 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.vh-viewport-bottombar {
+    @include transition(all 300ms cubic-bezier(0.77, 0, 0.175, 1));
+    @include viewport-region;
+    left: $basePostionOffset;
+    bottom: $basePostionOffset;
+    right: $sidebarWidth + 20px;
+    height: $bottomBarHeight - 2px;
+    overflow: visible;
+    z-index: 2;
+}
+
+.vh-viewport-center {
+
+    overflow: visible;
+    position: absolute;
+
+    width: $canvasWidth;
+    height: $canvasHeight;
+    left: 50%;
+    top: 50%;
+    margin: $canvasMarginTop 0 0 $canvasMarginLeft;
+    background-color: darken($grayDark, 10%);
+    border: 0 none;
+    z-index: 0;
+
+}
+
+.tools-off .vh-viewport-topbar {
+    @include transform(translateY(-70px));
+}
+.tools-off .vh-viewport-bottombar {
+    @include transform(translateY(50px));
+}
+
+.tools-off .vh-viewport-sidebar {
+    top: $basePostionOffset
+}
+
+
+.pin-sidebar-action {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    z-index: 10;
+    display: none;
+}
+.tools-off .pin-sidebar-action {
+    display: block;
+}
+.pin-sidebar-icon {
+    width: 100%;
+    height: 100%;
+    background: url(../images/pin-sidebar-icon.png) no-repeat 0 32px;
+    cursor: pointer;
+}
+
+.vh-viewport-sidebar:hover .pin-sidebar-icon {
+    background-position: 0 0;
+}
+
+.sidebar-pinned .pin-sidebar-icon {
+    background-position: 0 -32px!important;
+}
+
+body {
+    @include perspective(2000);
+    @include perspective-origin(50% 50%);
+}
+
+/*.animate-viewport {
+    @include transition(all 500ms cubic-bezier(0.77, 0, 0.175, 1));
+    @include transform(rotateY(0deg) translateZ(0px) translateX(0px));
+}
+
+.loading .animate-viewport {
+    @include transition(none);
+    @include transform(rotateY(-90deg) translateZ(0px) translateX(0px));
+}
+*/
+.animate-viewport .vh-viewport-bottombar {
+    @include transition(all 500ms 100ms cubic-bezier(0.77, 0, 0.175, 1));
+    @include transform(translateY(0px));
+}
+
+.loading .animate-viewport .vh-viewport-bottombar {
+    @include transition(none);
+    @include transform(translateY(50px));
+}
+
+.animate-viewport .vh-viewport-sidebar {
+    @include transition(all 500ms 50ms cubic-bezier(0.77, 0, 0.175, 1));
+    @include transform(translateX(0px));
+}
+
+.loading .animate-viewport .vh-viewport-sidebar {
+    @include transition(none);
+    @include transform(translateX(335px));
+}
+
+.animate-viewport .vh-viewport-topbar {
+    @include transition(all 500ms 0ms cubic-bezier(0.77, 0, 0.175, 1));
+    @include transform(translateY(0px));
+}
+
+.loading .animate-viewport .vh-viewport-topbar {
+    @include transition(none);
+    @include transform(translateY(-70px));
+}
+
+.animate-viewport .vh-viewport-center {
+    @include transition(opacity 700ms cubic-bezier(0.77, 0, 0.175, 1));
+    opacity: 1;
+}
+
+.loading .animate-viewport .vh-viewport-center {
+    @include transition(none);
+    opacity: 0;
+}
+
+#preloader {
+    background: #222222 url(../images/app_bg.png);
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .preloader-message {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        margin-top: -12px;
+        text-align: center;
+    }
+
+    .indicator {
+        height: 24px;
+        line-height: 24px;
+
+        display: inline-block;
+        background: url(../images/ajax_loader_24px_333.gif) no-repeat;
+        padding-left: 34px;
+        color: #FFFFFF;
+    }
+
+}

@@ -1,0 +1,15 @@
+.sidebar-block {
+    margin: -1px 0 1px;
+    padding: 20px;
+    @include box-bevel-and-accent;
+}
+
+
+.stage-controls h4 {
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.group-actions {
+    padding: 10px 0;
+}

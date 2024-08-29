@@ -1,0 +1,218 @@
+/* Forms
+------------------------------ */
+
+$appFormLabelWidth: 65px;
+$appFormControlHeight: 23px;
+
+@mixin app-form-input-style {
+    padding: 0 5px;
+    height: $appFormControlHeight;
+}
+
+.app-form {
+
+    padding: 0;
+    margin: 0 0 0 0;
+    position: relative;
+    overflow: hidden;
+
+    .control-header {
+        position: absolute;
+        top: -1px;
+        width: 100%;
+        background: darken($grayDark, 3%);
+        @include box-bevel-and-accent;
+        height: 65px;
+
+        .header-wrap {
+            padding: 20px;
+            padding-left: 80px;
+            padding-top: 17px;
+            background-position: 28px 50%;
+            background-repeat: no-repeat;
+        }
+
+        .item-type {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: darken($textColor, 20%);
+            line-height: 14px;
+        }
+
+        .item-name {
+            font-size: 18px;
+            color: lighten($textColor, 20%);
+            line-height: 18px;
+        }
+    }
+
+    .form-bbar {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 38px;
+        border-top: 1px solid $bevelLight;
+        box-shadow: 0 -1px 8px darken($grayDark, 5%);
+
+        .item-status {
+            font-size: 10px;
+            line-height: 38px;
+            padding: 0 0 0 20px;
+            float: left;
+        }
+        .item-status span {
+            vertical-align: middle;
+        }
+        .item-status .item-value {
+            font-weight: bold;
+            margin: 0 0 0 5px;
+            display: inline-block;
+            width: 20px;
+        }
+    }
+
+    .app-form-container {
+        overflow: hidden;
+        height: 100%;
+        @include box-sizing(border-box);
+        padding: 66px 0px 39px;
+
+        .app-form-controls {
+            height: 100%;
+            overflow: auto;
+        }
+    }
+
+    fieldset {
+        border: medium none;
+        padding-right: 10px;
+        padding-top: 0.5em;
+        background: url(../images/fieldset_splitter.png) no-repeat;
+        margin: 1em 0;
+    }
+
+    fieldset.collapsed {
+        padding-top: 0.5em;
+
+        legend:before {
+            border-color: transparent transparent transparent $silver;
+            top: -1px;
+            margin: 0 6px 0 2px;
+        }
+
+        .f-row {
+          display: none !important;
+        }
+    }
+
+    legend {
+        font-size: 0.9em;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 1px 5px;
+        padding: 0 10px;
+        margin: 0 0 0 -21px;
+        background: $grayDark;
+        color: darken($textColor, 5%);
+        cursor: pointer;
+    }
+
+    legend:before {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border: 4px solid;
+        border-color: $silver transparent transparent;
+        margin-right: 8px;
+        position: relative;
+        vertical-align: baseline;
+        top: 2px;        
+    }
+    legend:hover {
+        color: lighten($textColor, 10%);
+    }
+}
+
+
+.app-form .f-row {
+    margin: 0;
+    padding: 3px 10px 3px 5px;
+}
+
+.app-form .f-label {
+    display: inline-block;
+    padding: 3px 10px 0 0;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.app-form .f-inputs {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%
+}
+
+.app-form .l-vertical .f-label {
+    vertical-align: top;
+    margin-top: 3px;
+}
+
+.app-form .f-checkboxes label {
+    width: auto !important;
+    padding: 0;
+    vertical-align: middle;
+    margin: 0 !important;
+}
+
+.app-form .f-checkboxes .label {
+    padding: 0 0 0 8px;
+    vertical-align: middle;
+}
+
+.app-form .f-checkboxes input {
+    margin: 0;
+    padding: 0;
+}
+
+.app-form .f-hint {
+    padding-top: 3px;
+    font-size: 0.8em;
+    color: #555;
+}
+
+.app-form fieldset {
+    padding-left: $appFormLabelWidth + 10px;
+    position: relative;
+}
+
+.app-form  .f-label {
+    margin-left: -1 * $appFormLabelWidth - 10px;
+    width: $appFormLabelWidth;
+}
+
+.app-form .form-buttons {
+    padding-left: $appFormLabelWidth - 5px;
+}
+
+.app-form {
+    input[type=text],
+    select {
+        @include app-form-input-style;
+    }
+
+    .styled-select {
+        height: $appFormControlHeight;
+
+        .select-value {
+            height: 100%;
+            line-height: $appFormControlHeight;
+            padding: 0 5px;
+        }
+
+        &.w-carret:after {
+            top: 10px;
+            right: 8px;
+        }
+    }
+}

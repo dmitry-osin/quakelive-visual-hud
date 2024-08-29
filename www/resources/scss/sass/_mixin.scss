@@ -1,0 +1,133 @@
+@mixin viewport-region {
+    background: $grayDark;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+    @include box-shadow(rgba(0, 0, 0, 0.75) 0px 1px 4px);
+    @include top-bevel;
+}
+
+@mixin text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin font-family-serif {
+    font-family: $serifFontFamily;
+}
+@mixin font-family-sans-serif {
+    font-family: $sansFontFamily;
+}
+@mixin font-family-monospace {
+    font-family: $monoFontFamily;
+}
+@mixin font-shorthand($size: $baseFontSize, $weight: normal, $lineHeight: $baseLineHeight) {
+    font-size: $size;
+    font-weight: $weight;
+    line-height: $lineHeight;
+}
+
+@mixin font-serif($size: $baseFontSize, $weight: normal, $lineHeight: $baseLineHeight) {
+    @include font-family-serif;
+    @include font-shorthand($size, $weight, $lineHeight);
+}
+
+@mixin font-sans-serif($size: $baseFontSize, $weight: normal, $lineHeight: $baseLineHeight) {
+    @include font-family-sans-serif;
+    @include font-shorthand($size, $weight, $lineHeight);
+}
+
+@mixin monospace($size: $baseFontSize, $weight: normal, $lineHeight: $baseLineHeight) {
+    @include font-family-monospace;
+    @include font-shorthand($size, $weight, $lineHeight);
+}
+
+@mixin nav-divider($top: #e5e5e5, $bottom: $white) {
+  // IE7 needs a set width since we gave a height. Restricting just
+  // to IE7 to keep the 1px left/right space in other browsers.
+  // It is unclear where IE is getting the extra space that we need
+  // to negative-margin away, but so it goes.
+  *width: 100%;
+  height: 1px;
+  margin: (($baseLineHeight / 2) - 1) 1px; // 8px 1px
+  *margin: -5px 0 5px;
+  overflow: hidden;
+  background-color: $top;
+  border-bottom: 1px solid $bottom;
+}
+
+@mixin clearfix {
+    *zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+        // Fixes Opera/contenteditable bug:
+        // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+        line-height: 0;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// Block level inputs
+@mixin input-block-level {
+    display: block;
+    width: 100%;
+    min-height: 30px;
+    @include box-sizing(border-box); // Makes inputs behave like true block-level elements
+}
+
+@mixin span($columns) {
+    width: ($fluidGridColumnWidth * $columns) + ($fluidGridGutterWidth * ($columns - 1));
+}
+
+@mixin offset($columns) {
+    margin-left: ($fluidGridColumnWidth * $columns) + ($fluidGridGutterWidth * ($columns - 1)) + ($fluidGridGutterWidth*2);
+}
+
+@mixin offsetFirstChild($columns) {
+    margin-left: ($fluidGridColumnWidth * $columns) + ($fluidGridGutterWidth * ($columns - 1)) + ($fluidGridGutterWidth);
+}
+
+@mixin spanX($index) {
+    @while $index > 0 {
+        .span-#{$index} {
+            @include span($index);
+        }
+        $index: $index - 1;
+    }
+}
+
+@mixin offsetX($index) {
+    @while $index > 0 {
+        .offset-#{$index} {
+            @include offset($index);
+        }
+        .offset-#{$index}:first-child {
+            @include offsetFirstChild($index);
+        }
+        $index: $index - 1;
+    }
+}
+
+@mixin fluid($fluidGridColumnWidth, $fluidGridGutterWidth) {
+    .row-fluid {
+        width: 100%;
+        @include clearfix;
+
+        [class*="span"] {
+            @include input-block-level;
+            float: left;
+            margin-left: $fluidGridGutterWidth;
+        }
+        [class*="span"]:first-child {
+            margin-left: 0;
+        }
+
+        @include spanX($gridColumns);
+        @include offsetX($gridColumns);
+    }
+}
