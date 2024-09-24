@@ -1,7 +1,6 @@
-version: "3.1"
 services:
     www:
-        image: localhost/visualhud
+        image: ghcr.io/dmitry-osin/quakelive-visual-hud:latest
         ports: 
             - 80:80
         volumes:
